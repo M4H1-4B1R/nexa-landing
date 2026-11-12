@@ -111,19 +111,20 @@ export function Tile({
   return (
     <article
       className={cn(
-        "flex flex-col gap-6 overflow-hidden rounded-xl border border-hairline-strong bg-card p-5 transition-colors duration-500 ease-base hover:border-periwinkle/60 min-[480px]:p-6",
+        "flex flex-col gap-8 overflow-hidden rounded-xl border border-hairline-strong bg-card p-5 transition-colors duration-500 ease-base hover:border-periwinkle/60 min-[480px]:p-6 tab:p-8",
         className,
       )}
     >
       <Spotlight size={360} className="from-primary/30 via-ai/10 to-transparent blur-3xl" />
-      <div className="relative flex-1">{children}</div>
       <div className="relative grid gap-2">
         <h3 className="heading-4 flex items-center gap-2">
           <span className="text-periwinkle [&_svg]:size-4">{icon}</span>
           {title}
         </h3>
-        <p className="body-2">{body}</p>
+        <p className="body-2 max-w-[60ch]">{body}</p>
       </div>
+      {/* mocks sit at the bottom (or grow, with flex-1) so uneven tile heights leave space under the text, not inside the mock */}
+      <div className="relative flex flex-1 flex-col justify-end">{children}</div>
     </article>
   );
 }

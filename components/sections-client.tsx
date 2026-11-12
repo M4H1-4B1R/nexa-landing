@@ -294,7 +294,7 @@ const TERMINAL = [
 
 export function TerminalMock() {
   return (
-    <div className="rounded-lg border border-hairline bg-deep p-4 font-mono text-[0.8125rem] leading-relaxed">
+    <div className="flex-1 rounded-lg border border-hairline bg-deep p-4 font-mono text-[0.8125rem] leading-relaxed">
       {TERMINAL.map((line, index) => (
         <m.div
           key={line.cmd}

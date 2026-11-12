@@ -276,7 +276,7 @@ export default function Home() {
               title="Everything an agent needs to finish the job"
               lede="Each capability is built to be controlled by your admins and used by your team. Interface examples are illustrative."
             />
-            <Reveal className="grid gap-4 tab:grid-cols-3">
+            <Reveal className="grid gap-5 tab:grid-cols-3 tab:gap-6">
               <Tile
                 className="tab:col-span-2"
                 icon={<SquareTerminal />}
@@ -286,7 +286,6 @@ export default function Home() {
                 <TerminalMock />
               </Tile>
               <Tile
-                className="tab:row-span-2"
                 icon={<Workflow />}
                 title="Your choice of model"
                 body="Pi, OpenCode, Codex and Claude Code drive the same workspace. Access narrows from organization to person."
@@ -299,16 +298,16 @@ export default function Home() {
               <Tile icon={<Bot />} title="Agents and skills your team builds" body="Address agents by @handle and let them hand work to each other.">
                 <AgentsMock />
               </Tile>
+              <Tile icon={<KeyRound />} title="Credentials and integrations" body="A keychain, MCP servers, OAuth apps and connectors. Agents use your access, not a shared key.">
+                <KeychainMock />
+              </Tile>
               <Tile
-                className="tab:col-span-2"
+                className="tab:col-span-3"
                 icon={<ShieldCheck />}
                 title="Control, approvals and audit"
                 body="Security postures, command policy, approvals and screening, with every action in the audit log. Try the posture switch."
               >
                 <PostureAudit />
-              </Tile>
-              <Tile icon={<KeyRound />} title="Credentials and integrations" body="A keychain, MCP servers, OAuth apps and connectors. Agents use your access, not a shared key.">
-                <KeychainMock />
               </Tile>
               <Tile icon={<Globe />} title="Slack and web, one identity" body="The same person, access and settings follow you across both.">
                 <SurfacesMock />
