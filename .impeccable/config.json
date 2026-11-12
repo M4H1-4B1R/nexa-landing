@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-12T07:17:18.220Z",
+        "reason": "DESIGN.nexagents.md brand sheet specifies Inter only; user named that file as the design instructions for this page"
+      }
+    ]
+  }
+}
