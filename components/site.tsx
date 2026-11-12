@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { MotionConfig } from "motion/react";
+import { LazyMotion, MotionConfig } from "motion/react";
 import { LOGIN_URL, NAV_LINKS } from "@/lib/content";
 import { Logo } from "@/components/shell";
 
 export function MotionRoot({ children }: { children: ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  // domMax (not domAnimation): AnimatedBackground uses layoutId. Loaded async so it stays out of first-load JS.
+  return (
+    <LazyMotion strict features={() => import("@/components/motion-features").then((mod) => mod.default)}>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </LazyMotion>
+  );
 }
 
 const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;

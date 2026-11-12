@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { AnimatePresence, Transition, motion } from 'motion/react';
+import { AnimatePresence, Transition, m } from 'motion/react';
 import {
   Children,
   cloneElement,
@@ -69,7 +69,7 @@ export function AnimatedBackground({
       <>
         <AnimatePresence initial={false}>
           {activeId === id && (
-            <motion.div
+            <m.div
               layoutId={`background-${uniqueId}`}
               className={cn('absolute inset-0', className)}
               transition={transition}

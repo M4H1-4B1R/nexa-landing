@@ -3,7 +3,7 @@ import {
   AnimatePresence,
   Transition,
   Variant,
-  motion,
+  m,
   MotionProps,
 } from 'motion/react';
 import { cn } from '@/lib/utils';
@@ -31,7 +31,7 @@ export function TransitionPanel({
         mode='popLayout'
         custom={motionProps.custom}
       >
-        <motion.div
+        <m.div
           key={activeIndex}
           variants={variants}
           transition={transition}
@@ -41,7 +41,7 @@ export function TransitionPanel({
           {...motionProps}
         >
           {children[activeIndex]}
-        </motion.div>
+        </m.div>
       </AnimatePresence>
     </div>
   );

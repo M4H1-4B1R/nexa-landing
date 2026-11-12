@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  motion,
+  m,
   useMotionValue,
   useSpring,
   type SpringOptions,
@@ -35,6 +35,12 @@ export function Magnetic({
   const springY = useSpring(y, springOptions);
 
   useEffect(() => {
+    // Listen only while hovered; idle instances cost nothing per mousemove.
+    if (!isHovered) {
+      x.set(0);
+      y.set(0);
+      return;
+    }
     const calculateDistance = (e: MouseEvent) => {
       if (ref.current) {
         const rect = ref.current.getBoundingClientRect();
@@ -45,7 +51,7 @@ export function Magnetic({
 
         const absoluteDistance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
 
-        if (isHovered && absoluteDistance <= range) {
+        if (absoluteDistance <= range) {
           const scale = 1 - absoluteDistance / range;
           x.set(distanceX * intensity * scale);
           y.set(distanceY * intensity * scale);
@@ -56,12 +62,12 @@ export function Magnetic({
       }
     };
 
-    document.addEventListener('mousemove', calculateDistance);
+    document.addEventListener('mousemove', calculateDistance, { passive: true });
 
     return () => {
       document.removeEventListener('mousemove', calculateDistance);
     };
-  }, [ref, isHovered, intensity, range]);
+  }, [ref, isHovered, intensity, range, x, y]);
 
   useEffect(() => {
     if (actionArea === 'parent' && ref.current?.parentElement) {
@@ -97,7 +103,7 @@ export function Magnetic({
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       onMouseEnter={actionArea === 'self' ? handleMouseEnter : undefined}
       onMouseLeave={actionArea === 'self' ? handleMouseLeave : undefined}
@@ -107,6 +113,6 @@ export function Magnetic({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
